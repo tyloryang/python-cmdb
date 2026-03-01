@@ -35,6 +35,7 @@ def multiply(a: int, b: int) -> int:
 tools = [add, multiply]
 
 # 创建 Agent（使用 langgraph 的 create_agent）
+# llm大模型 和 工具列表 来创建一个智能体
 agent = create_agent(llm, tools)
 
 # 运行 Agent

@@ -1,7 +1,7 @@
 [project]
 name = "python-cmdb"
 version = "0.1.0"
-description = "Add your description here"
+description = "要求实现devops相关的功能"
 requires-python = ">=3.12"
 dependencies = [
     "langchain>=1.2.10",
