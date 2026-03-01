@@ -37,7 +37,7 @@
         <el-table-column prop="memory_gb" label="内存(GB)" width="90" />
         <el-table-column prop="disk_gb" label="磁盘(GB)" width="90" />
         <el-table-column prop="created_at" label="创建时间" width="160" />
-        <el-table-column label="操作" width="220" fixed="right">
+        <el-table-column label="操作" width="300" fixed="right">
           <template #default="{ row }">
             <el-button
               size="small"
@@ -53,6 +53,14 @@
               :loading="row.pinging"
             >
               验证
+            </el-button>
+            <el-button
+              size="small"
+              type="warning"
+              @click="handleCollect(row)"
+              :loading="row.collecting"
+            >
+              采集
             </el-button>
             <el-button
               size="small"
@@ -138,7 +146,7 @@ import { ref, reactive, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import type { FormInstance, FormRules } from 'element-plus'
-import { getServers, createServer, deleteServer, pingServer } from '@/api/cmdb'
+import { getServers, createServer, deleteServer, pingServer, collectServer } from '@/api/cmdb'
 
 const router = useRouter()
 
@@ -259,6 +267,22 @@ async function handlePing(row: any) {
     ElMessage.error(err?.response?.data?.detail || '验证失败')
   } finally {
     row.pinging = false
+  }
+}
+
+async function handleCollect(row: any) {
+  row.collecting = true
+  try {
+    const res = await collectServer(row.id)
+    ElMessage.success(`${row.hostname}: ${res.msg || '采集成功'}`)
+    // Update row data in place
+    if (res.server) {
+      Object.assign(row, res.server)
+    }
+  } catch (err: any) {
+    ElMessage.error(err?.response?.data?.detail || '采集失败')
+  } finally {
+    row.collecting = false
   }
 }
 

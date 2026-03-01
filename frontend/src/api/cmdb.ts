@@ -19,3 +19,7 @@ export function getServer(id: number) {
 export function pingServer(id: number) {
   return http.post<any>(`/v1/cmdb/servers/${id}/ping`).then((r) => r.data)
 }
+
+export function collectServer(id: number) {
+  return http.post<any>(`/v1/cmdb/servers/${id}/collect`).then((r) => r.data)
+}
