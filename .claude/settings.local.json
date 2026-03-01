@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git fetch origin)",
+      "Bash(python branch_diff_report.py master master)",
+      "Bash(python -X utf8 branch_diff_report.py master master)",
+      "Bash(bash branch_diff_report.sh master master)",
+      "Bash(git diff-tree --no-commit-id -r --name-status HEAD)",
+      "Bash(git diff-tree --no-commit-id -r --name-status --root HEAD)",
+      "Bash(python:*)",
+      "Bash(node:*)",
+      "Bash(uv:*)",
+      "Bash(/d/python-cmdb/.venv/Scripts/python.exe:*)",
+      "Bash(/d/python-cmdb/.venv/Scripts/pip.exe install:*)",
+      "Bash(/d/python-cmdb/.venv/Scripts/pip3.exe install:*)",
+      "Bash(sc query:*)",
+      "Bash(docker:*)",
+      "Bash(netstat:*)",
+      "Bash(pkill:*)"
+    ]
+  }
+}
