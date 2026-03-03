@@ -113,7 +113,7 @@
           <el-form-item label="触发方式" prop="trigger_type">
             <el-select v-model="form.trigger_type" style="width: 100%;">
               <el-option label="手动" value="manual" />
-              <el-option label="定时" value="cron" />
+              <el-option label="定时" value="schedule" />
               <el-option label="Webhook" value="webhook" />
             </el-select>
           </el-form-item>

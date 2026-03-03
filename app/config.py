@@ -21,7 +21,7 @@ class Settings(BaseSettings):
     DINGTALK_WEBHOOK: str = ""
 
     # Jenkins
-    JENKINS_URL: str = ""
+    JENKINS_URL: str = "http://192.168.9.221:24293"
     JENKINS_USER: str = ""
     JENKINS_TOKEN: str = ""
 

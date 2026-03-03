@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from app.api.v1 import auth, users, roles, audit, notification, terminal
+from app.api.v1 import auth, users, roles, audit, notification, terminal, dashboard
 from app.api.v1.cmdb import servers
 from app.api.v1.cicd import pipelines
 from app.api.v1.monitor import alerts
@@ -19,3 +19,4 @@ router.include_router(releases.router)
 router.include_router(notification.router)
 router.include_router(terminal.router)
 router.include_router(log_watchers.router)
+router.include_router(dashboard.router)
