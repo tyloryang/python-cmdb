@@ -131,11 +131,12 @@ async def run_watcher_now(
     db: AsyncSession = Depends(get_db),
     _: User = Depends(get_current_user),
 ):
-    """立即触发一次日志解析（不受 Beat 调度间隔限制）"""
+    """立即触发一次日志解析（使用 asyncio 后台任务）"""
     await _get_or_404(db, watcher_id)
-    from app.tasks.log_tasks import process_log_watcher
-    task = process_log_watcher.delay(watcher_id)
-    return {"msg": "已触发解析任务", "task_id": task.id}
+    import asyncio
+    from app.tasks.log_tasks import _process_watcher
+    asyncio.create_task(_process_watcher(watcher_id))
+    return {"msg": "已触发解析任务"}
 
 
 # ─── 模板查询 ─────────────────────────────────────────────────────────────────
